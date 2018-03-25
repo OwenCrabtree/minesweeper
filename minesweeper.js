@@ -47,7 +47,26 @@ const getNumberOfNeighborBombs = (bombBoard,rowIndex,columnIndex) => {
     [-1,1]
   ];
   const numberOfRows = bombBoard.length;
-}
+  const numberOfColumns = bombBoard[0].length;
+  let numberOfBombs = 0;
+
+  neighborOffsets.forEach(offset => {
+     const neighborRowIndex = rowIndex + offset[0];
+     const neighborColumnIndex = columnIndex + offset[1];
+
+     if(neighborRowIndex >= 0 &&
+     neighborRowIndex < numberOfRows &&
+     neighborColumnIndex >= 0 &&
+     neighborColumnIndex < numberOfColumns){
+
+       if(bombBoard[neighborRowIndex][neighborColumnIndex] == 'B'){
+         numberOfBombs = numberOfBombs + 1;
+       }
+
+     }
+  });
+  return numberOfBombs;
+};
 
 
 const printBoard = board => {
